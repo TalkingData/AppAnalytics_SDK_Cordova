@@ -1,0 +1,14 @@
+{
+  "name": "appanalytics",
+  "version": "4.0.0",
+  "description": "",
+  "main": "TalkingData.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "TalkingData"
+  ],
+  "author": "TalkingData",
+  "license": "ISC"
+}
