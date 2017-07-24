@@ -11,6 +11,10 @@ var TalkingData = {
         cordova.exec(null, null, "TalkingData", "init", [appKey, channelId]);
     },
 
+    setAntiCheatingEnabled:function(enabled) {
+        cordova.exec(null, null, "TalkingData", "setAntiCheatingEnabled", [enabled]);
+    },
+
     AccountType: {
         ANONYMOUS   : 0,
         REGISTERED  : 1,

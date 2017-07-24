@@ -44,6 +44,11 @@
 // enabled   : true or false
 - (void)setLogEnability:(CDVInvokedUrlCommand*)command;
 
+// 是否开启反作弊功能
+// command 中的值：
+// enabled   : true or false
+- (void)setAntiCheatingEnabled:(CDVInvokedUrlCommand*)command;
+
 // 注册事件
 // command 中的值：
 // accountId : 帐号ID

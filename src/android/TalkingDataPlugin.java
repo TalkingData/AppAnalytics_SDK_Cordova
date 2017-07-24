@@ -54,6 +54,11 @@ public class TalkingDataPlugin extends CordovaPlugin {
 			String channelId = args.getString(1);
 			TCAgent.init(ctx, appKey, channelId);
 			return true;
+        } else if (action.equals("setAntiCheatingEnabled")) {
+            // 是否开启反作弊功能
+            boolean enabled = args.getBoolean(0);
+            TCAgent.setAntiCheatingEnabled(ctx, enabled);
+            return true;
         } else if (action.equals("onRegister")) {
             // 注册事件
             String accountId = args.getString(0);

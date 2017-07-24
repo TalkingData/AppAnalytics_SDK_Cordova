@@ -88,6 +88,15 @@
     [TalkingData setLatitude:latitude longitude:longitude];
 }
 
+- (void)setAntiCheatingEnabled:(CDVInvokedUrlCommand*)command {
+    NSString *arg0 = [command.arguments objectAtIndex:0];
+    if (arg0 == nil || [arg0 isKindOfClass:[NSNull class]]) {
+        return;
+    }
+    BOOL enabled = [arg0 boolValue];
+    [TalkingData setAntiCheatingEnabled:enabled];
+}
+
 - (void)setLogEnability:(CDVInvokedUrlCommand*)command {
     NSString *arg0 = [command.arguments objectAtIndex:0];
     if (arg0 == nil || [arg0 isKindOfClass:[NSNull class]]) {
