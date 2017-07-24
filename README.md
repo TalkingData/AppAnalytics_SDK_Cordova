@@ -288,7 +288,7 @@ App Analytics Cordova 平台 SDK 由`封装层`和`Native SDK`两部分构成，
 	```
 	d) 未选择`灵动分析`功能无需删除封装层代码  
 	e) 未选择`用户质量评估`功能则删除以下5部分  
-	删除 `js/TalkingData.js` 文件中如下代码：
+	删除 `www/TalkingData.js` 文件中如下代码：
 	
 	```
 		setAntiCheatingEnabled:function(enabled) {
