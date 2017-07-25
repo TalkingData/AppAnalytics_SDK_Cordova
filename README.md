@@ -302,7 +302,7 @@ App Analytics Cordova 平台 SDK 由`封装层`和`Native SDK`两部分构成，
 				...
 				return true;
 	```
-	删除 `src/ios/TakjubgDataPlugin.h` 文件中如下代码：
+	删除 `src/ios/TalkingDataPlugin.h` 文件中如下代码：
 	
 	```
 	- (void)setAntiCheatingEnabled:(CDVInvokedUrlCommand*)command;
