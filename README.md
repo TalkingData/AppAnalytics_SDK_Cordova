@@ -331,4 +331,27 @@ App Analytics Cordova 平台 SDK 由`封装层`和`Native SDK`两部分构成，
 	删除 `src/android/TalkingDataSMSPlugin.java` 文件  
 	删除 `src/ios/TalkingDataSMSPlugin.h` 文件  
 	删除 `src/ios/TalkingDataSMSPlugin.m` 文件  
-	删除 `src/ios/TalkingDataSMS.h` 文件  
+	删除 `src/ios/TalkingDataSMS.h` 文件
+	
+	删除 `plugin.xml` 文件中如下代码：
+	```
+	<js-module src="www/TalkingDataSMS.js" name="TalkingDataSMS">
+	    <clobbers target="TalkingDataSMS" />
+	</js-module>
+	
+	<header-file src="src/ios/TalkingDataSMS.h" />
+        <header-file src="src/ios/TalkingDataSMSPlugin.h" />
+        <source-file src="src/ios/TalkingDataSMSPlugin.m" />
+	
+	<feature name="TalkingDataSMS">
+	    <param name="ios-package" value="TalkingDataSMSPlugin"/>
+	</feature>
+	
+	<source-file src="src/android/TalkingDataSMSPlugin.java" target-dir="src/com/talkingdata/analytics" />
+	
+	<feature name="TalkingDataSMS">
+            <param name="android-package" value="com.talkingdata.analytics.TalkingDataSMSPlugin"/>
+        </feature>
+	```
+	
+	
