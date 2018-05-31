@@ -15,16 +15,16 @@
     <js-module src="www/TalkingDataShoppingCart.js" name="TalkingDataShoppingCart">
         <clobbers target="TalkingDataShoppingCart" />
     </js-module>
-    <js-module src="www/TalkingDataSMS.js" name="TalkingDataSMS">
-        <clobbers target="TalkingDataSMS" />
+    <js-module src="www/TalkingDataEAuth.js" name="TalkingDataEAuth">
+        <clobbers target="TalkingDataEAuth" />
     </js-module>
     
     <!-- ios -->
     <platform name="ios">
         
-        <header-file src="src/ios/TalkingDataSMS.h" />
-        <header-file src="src/ios/TalkingDataSMSPlugin.h" />
-        <source-file src="src/ios/TalkingDataSMSPlugin.m" />
+        <header-file src="src/ios/TalkingDataEAuth.h" />
+        <header-file src="src/ios/TalkingDataEAuthPlugin.h" />
+        <source-file src="src/ios/TalkingDataEAuthPlugin.m" />
         <header-file src="src/ios/TalkingDataPlugin.h" />
         <source-file src="src/ios/TalkingDataPlugin.m" />
         <header-file src="src/ios/TalkingData.h" />
@@ -34,8 +34,8 @@
             <feature name="TalkingData">
                 <param name="ios-package" value="TalkingDataPlugin"/>
             </feature>
-            <feature name="TalkingDataSMS">
-                <param name="ios-package" value="TalkingDataSMSPlugin"/>
+            <feature name="TalkingDataEAuth">
+                <param name="ios-package" value="TalkingDataEAuthPlugin"/>
             </feature>
         </config-file>
         
@@ -53,16 +53,16 @@
     <!-- android -->
     <platform name="android">
         
-        <source-file src="src/android/TalkingData.jar" target-dir="libs" />
+        <source-file src="src/android/TalkingData.jar" target-dir="app/src/main/libs" />
         <source-file src="src/android/TalkingDataPlugin.java" target-dir="src/com/talkingdata/analytics" />
-        <source-file src="src/android/TalkingDataSMSPlugin.java" target-dir="src/com/talkingdata/analytics" />
+        <source-file src="src/android/TalkingDataEAuthPlugin.java" target-dir="src/com/talkingdata/analytics" />
         
         <config-file target="res/xml/config.xml" parent="/widget/plugins">
             <feature name="TalkingData">
                 <param name="android-package" value="com.talkingdata.analytics.TalkingDataPlugin"/>
             </feature>
-            <feature name="TalkingDataSMS">
-                <param name="android-package" value="com.talkingdata.analytics.TalkingDataSMSPlugin"/>
+            <feature name="TalkingDataEAuth">
+                <param name="android-package" value="com.talkingdata.analytics.TalkingDataEAuthPlugin"/>
             </feature>
         </config-file>
         
