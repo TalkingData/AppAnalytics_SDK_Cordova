@@ -53,7 +53,7 @@
     <!-- android -->
     <platform name="android">
         
-        <source-file src="src/android/TalkingData.jar" target-dir="app/src/main/libs" />
+        <source-file src="src/android/TalkingData.jar" target-dir="libs" />
         <source-file src="src/android/TalkingDataPlugin.java" target-dir="src/com/talkingdata/analytics" />
         <source-file src="src/android/TalkingDataEAuthPlugin.java" target-dir="src/com/talkingdata/analytics" />
         
