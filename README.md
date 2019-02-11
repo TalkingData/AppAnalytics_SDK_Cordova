@@ -286,8 +286,7 @@ App Analytics Cordova 平台 SDK 由`封装层`和`Native SDK`两部分构成，
 	+ (void)trackPageBegin:(NSString *)pageName;
 	+ (void)trackPageEnd:(NSString *)pageName;
 	```
-	d) 未选择`灵动分析`功能无需删除封装层代码  
-	e) 未选择`用户质量评估`功能则删除以下5部分  
+	d) 未选择`用户质量评估`功能则删除以下5部分  
 	删除 `www/TalkingData.js` 文件中如下代码：
 
 	```
@@ -319,14 +318,14 @@ App Analytics Cordova 平台 SDK 由`封装层`和`Native SDK`两部分构成，
 	```
 	+ (void)setAntiCheatingEnabled:(BOOL)enabled;
 	```
-	f) 未选择`推送营销`功能则删除以下1部分  
+	e) 未选择`推送营销`功能则删除以下1部分  
 	删除 `src/ios/TalkingData.h` 文件中如下代码：
 
 	```
 	+ (void)setDeviceToken:(NSData *)deviceToken;
 	+ (BOOL)handlePushMessage:(NSDictionary *)message;
 	```
-	g) 未选择`易认证`功能则删除以下5部分  
+	f) 未选择`易认证`功能则删除以下5部分  
 	删除 `www/TalkingDataEAuth.js` 文件  
 	删除 `src/android/TalkingDataEAuthPlugin.java` 文件  
 	删除 `src/ios/TalkingDataEAuthPlugin.h` 文件  
