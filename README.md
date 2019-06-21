@@ -325,30 +325,3 @@ App Analytics Cordova 平台 SDK 由`封装层`和`Native SDK`两部分构成，
 	+ (void)setDeviceToken:(NSData *)deviceToken;
 	+ (BOOL)handlePushMessage:(NSDictionary *)message;
 	```
-	f) 未选择`易认证`功能则删除以下5部分  
-	删除 `www/TalkingDataEAuth.js` 文件  
-	删除 `src/android/TalkingDataEAuthPlugin.java` 文件  
-	删除 `src/ios/TalkingDataEAuthPlugin.h` 文件  
-	删除 `src/ios/TalkingDataEAuthPlugin.m` 文件  
-	删除 `src/ios/TalkingDataEAuth.h` 文件
-
-	删除 `plugin.xml` 文件中如下代码：
-	```
-	<js-module src="www/TalkingDataEAuth.js" name="TalkingDataEAuth">
-	    <clobbers target="TalkingDataEAuth" />
-	</js-module>
-
-	<header-file src="src/ios/TalkingDataEAuth.h" />
-    <header-file src="src/ios/TalkingDataEAuthPlugin.h" />
-    <source-file src="src/ios/TalkingDataEAuthPlugin.m" />
-
-	<feature name="TalkingDataEAuth">
-	    <param name="ios-package" value="TalkingDataEAuthPlugin"/>
-	</feature>
-
-	<source-file src="src/android/TalkingDataEAuthPlugin.java" target-dir="src/com/talkingdata/analytics" />
-
-	<feature name="TalkingDataEAuth">
-        <param name="android-package" value="com.talkingdata.analytics.TalkingDataEAuthPlugin"/>
-    </feature>
-	```
