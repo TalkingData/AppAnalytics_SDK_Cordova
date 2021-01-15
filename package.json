@@ -1,14 +1,23 @@
 {
-  "name": "appanalytics",
-  "version": "4.0.0",
-  "description": "",
+  "name": "talkingdata-appanalytics",
+  "version": "4.0.12",
+  "description": "TalkingData App Analytics SDK Cordova Plugin.",
   "main": "TalkingData.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/TalkingData/AppAnalytics_SDK_Cordova.git"
+  },
   "keywords": [
-    "TalkingData"
+    "TalkingData",
+    "Analytics"
   ],
   "author": "TalkingData",
-  "license": "ISC"
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/TalkingData/AppAnalytics_SDK_Cordova/issues"
+  },
+  "homepage": "https://github.com/TalkingData/AppAnalytics_SDK_Cordova#readme"
 }
