@@ -18,7 +18,6 @@ import android.content.Context;
 
 import com.tendcloud.tenddata.TCAgent;
 import com.tendcloud.tenddata.TDProfile;
-import com.tendcloud.tenddata.Order;
 import com.tendcloud.tenddata.ShoppingCart;
 
 
@@ -74,17 +73,23 @@ public class TalkingDataPlugin extends CordovaPlugin {
             TCAgent.onLogin(profileId, type, name);
             return true;
         } else if (action.equals("onPlaceOrder")) {
-            String profileId = args.getString(0);
-            String orderStr = args.getString(1);
-            Order order = this.stringToOrder(orderStr);
-            TCAgent.onPlaceOrder(profileId, order);
+            String orderId = args.getString(0);
+            int amount = args.getInt(1);
+            String currencyType = args.getString(2);
+            TCAgent.onPlaceOrder(orderId, amount, currencyType);
             return true;
         } else if (action.equals("onOrderPaySucc")) {
-            String profileId = args.getString(0);
-            String payType = args.getString(1);
-            String orderStr = args.getString(2);
-            Order order = this.stringToOrder(orderStr);
-            TCAgent.onOrderPaySucc(profileId, payType, order);
+            String orderId = args.getString(0);
+            int amount = args.getInt(1);
+            String currencyType = args.getString(2);
+            String paymentType = args.getString(3);
+            TCAgent.onOrderPaySucc(orderId, amount, currencyType, paymentType);
+            return true;
+        } else if (action.equals("onCancelOrder")) {
+            String orderId = args.getString(0);
+            int amount = args.getInt(1);
+            String currencyType = args.getString(2);
+            TCAgent.onCancelOrder(orderId, amount, currencyType);
             return true;
         } else if (action.equals("onViewItem")) {
             String itemId = args.getString(0);
@@ -215,22 +220,6 @@ public class TalkingDataPlugin extends CordovaPlugin {
             e.printStackTrace();
         }
         return result;
-    }
-    
-    private Order stringToOrder(String orderStr) {
-        try {
-            JSONObject orderJson = new JSONObject(orderStr);
-            Order order = Order.createOrder(orderJson.getString("orderId"), orderJson.getInt("total"), orderJson.getString("currencyType"));
-            JSONArray items = orderJson.getJSONArray("items");
-            for (int i=0; i<items.length(); i++) {
-                JSONObject item = items.getJSONObject(i);
-                order.addItem(item.getString("itemId"), item.getString("category"), item.getString("name"), item.getInt("unitPrice"), item.getInt("amount"));
-            }
-            return order;
-        } catch (JSONException e) {
-            e.printStackTrace();
-        }
-        return null;
     }
     
     private ShoppingCart stringToShoppingCart(String shoppingCartStr) {

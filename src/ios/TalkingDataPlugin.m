@@ -129,32 +129,68 @@
 }
 
 - (void)onPlaceOrder:(CDVInvokedUrlCommand*)command {
-    NSString *profileId = [command.arguments objectAtIndex:0];
-    if (![profileId isKindOfClass:[NSString class]]) {
-        profileId = nil;
+    NSString *orderId = [command.arguments objectAtIndex:0];
+    if (![orderId isKindOfClass:[NSString class]]) {
+        orderId = nil;
     }
     
-    NSString *arg1 = [command.arguments objectAtIndex:1];
-    TalkingDataOrder *order = [self stringToOrder:arg1];
+    int amount = 0;
+    NSNumber *arg1 = [command.arguments objectAtIndex:1];
+    if ([arg1 isKindOfClass:[NSNumber class]]) {
+        amount = [arg1 intValue];
+    }
     
-    [TalkingData onPlaceOrder:profileId order:order];
+    NSString *currencyType = [command.arguments objectAtIndex:2];
+    if (![currencyType isKindOfClass:[NSString class]]) {
+        currencyType = nil;
+    }
+    
+    [TalkingData onPlaceOrder:orderId amount:amount currencyType:currencyType];
 }
 
 - (void)onOrderPaySucc:(CDVInvokedUrlCommand*)command {
-    NSString *profileId = [command.arguments objectAtIndex:0];
-    if (![profileId isKindOfClass:[NSString class]]) {
-        profileId = nil;
+    NSString *orderId = [command.arguments objectAtIndex:0];
+    if (![orderId isKindOfClass:[NSString class]]) {
+        orderId = nil;
     }
     
-    NSString *payType = [command.arguments objectAtIndex:1];
-    if (![payType isKindOfClass:[NSString class]]) {
-        payType = nil;
+    int amount = 0;
+    NSNumber *arg1 = [command.arguments objectAtIndex:1];
+    if ([arg1 isKindOfClass:[NSNumber class]]) {
+        amount = [arg1 intValue];
     }
     
-    NSString *arg2 = [command.arguments objectAtIndex:2];
-    TalkingDataOrder *order = [self stringToOrder:arg2];
+    NSString *currencyType = [command.arguments objectAtIndex:2];
+    if (![currencyType isKindOfClass:[NSString class]]) {
+        currencyType = nil;
+    }
     
-    [TalkingData onOrderPaySucc:profileId payType:payType order:order];
+    NSString *paymentType = [command.arguments objectAtIndex:3];
+    if (![paymentType isKindOfClass:[NSString class]]) {
+        paymentType = nil;
+    }
+    
+    [TalkingData onOrderPaySucc:orderId amount:amount currencyType:currencyType paymentType:paymentType];
+}
+
+- (void)onCancelOrder:(CDVInvokedUrlCommand*)command {
+    NSString *orderId = [command.arguments objectAtIndex:0];
+    if (![orderId isKindOfClass:[NSString class]]) {
+        orderId = nil;
+    }
+    
+    int amount = 0;
+    NSNumber *arg1 = [command.arguments objectAtIndex:1];
+    if ([arg1 isKindOfClass:[NSNumber class]]) {
+        amount = [arg1 intValue];
+    }
+    
+    NSString *currencyType = [command.arguments objectAtIndex:2];
+    if (![currencyType isKindOfClass:[NSString class]]) {
+        currencyType = nil;
+    }
+    
+    [TalkingData onCancelOrder:orderId amount:amount currencyType:currencyType];
 }
 
 - (void)onViewItem:(CDVInvokedUrlCommand*)command {

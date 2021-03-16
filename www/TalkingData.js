@@ -105,23 +105,33 @@ var TalkingData = {
 
     /**
      * 下单
-     * @param {String}  profileId       : 帐户ID
-     * @param {Object}  order           : 订单详情
+     * @param {String}  orderId         : 订单ID
+     * @param {Number}  amount          : 金额
+     * @param {String}  currencyType    : 货币类型
      */
-    onPlaceOrder:function(profileId, order) {
-        var orderJson = JSON.stringify(order);
-        exec(null, null, "TalkingData", "onPlaceOrder", [profileId, orderJson]);
+    onPlaceOrder:function(orderId, amount, currencyType) {
+        exec(null, null, "TalkingData", "onPlaceOrder", [orderId, amount, currencyType]);
     },
 
     /**
      * 支付订单
-     * @param {String}  profileId       : 帐户ID
-     * @param {String}  payType         : 支付类型
-     * @param {Object}  order           : 订单详情
+     * @param {String}  orderId         : 订单ID
+     * @param {Number}  amount          : 金额
+     * @param {String}  currencyType    : 货币类型
+     * @param {String}  paymentType     : 支付类型
      */
-    onOrderPaySucc:function(profileId, payType, order) {
-        var orderJson = JSON.stringify(order);
-        exec(null, null, "TalkingData", "onOrderPaySucc", [profileId, payType, orderJson]);
+    onOrderPaySucc:function(orderId, amount, currencyType, paymentType) {
+        exec(null, null, "TalkingData", "onOrderPaySucc", [orderId, amount, currencyType, paymentType]);
+    },
+
+    /**
+     * 取消订单
+     * @param {String}  orderId         : 订单ID
+     * @param {Number}  amount          : 金额
+     * @param {String}  currencyType    : 货币类型
+     */
+    onCancelOrder:function(orderId, amount, currencyType) {
+        exec(null, null, "TalkingData", "onCancelOrder", [orderId, amount, currencyType]);
     },
 
     /**

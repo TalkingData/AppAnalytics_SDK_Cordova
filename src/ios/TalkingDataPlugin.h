@@ -14,6 +14,7 @@
 - (void)onLogin:(CDVInvokedUrlCommand*)command;
 - (void)onPlaceOrder:(CDVInvokedUrlCommand*)command;
 - (void)onOrderPaySucc:(CDVInvokedUrlCommand*)command;
+- (void)onCancelOrder:(CDVInvokedUrlCommand*)command;
 - (void)onViewItem:(CDVInvokedUrlCommand*)command;
 - (void)onAddItemToShoppingCart:(CDVInvokedUrlCommand*)command;
 - (void)onViewShoppingCart:(CDVInvokedUrlCommand*)command;

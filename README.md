@@ -21,41 +21,37 @@ App Analytics Cordova/PhoneGap 平台 SDK 由 `封装层` 和 `Native SDK` 两�
 	删除 `plugin.xml` 文件中如下代码：
 	
 	```
-		<js-module src="www/TalkingDataOrder.js" name="TalkingDataOrder">
-			<clobbers target="TalkingDataOrder" />
-		</js-module>
 		<js-module src="www/TalkingDataShoppingCart.js" name="TalkingDataShoppingCart">
 			<clobbers target="TalkingDataShoppingCart" />
 		</js-module>
 	```
-	删除 `www/TalkingDataOrder.js` 文件  
 	删除 `www/TalkingDataShoppingCart.js` 文件  
 	删除 `www/TalkingData.js` 文件中如下代码：
 	
 	```
-		onPlaceOrder:function(profileId, order) {
-			var orderJson = JSON.stringify(order);
-			cordova.exec(null, null, "TalkingData", "onPlaceOrder", [profileId, orderJson]);
+		onPlaceOrder:function(orderId, amount, currencyType) {
+			exec(null, null, "TalkingData", "onPlaceOrder", [orderId, amount, currencyType]);
 		},
-		onOrderPaySucc:function(profileId, payType, order) {
-			var orderJson = JSON.stringify(order);
-			cordova.exec(null, null, "TalkingData", "onOrderPaySucc", [profileId, payType, orderJson]);
+		onOrderPaySucc:function(orderId, amount, currencyType, paymentType) {
+			exec(null, null, "TalkingData", "onOrderPaySucc", [orderId, amount, currencyType, paymentType]);
+		},
+		onCancelOrder:function(orderId, amount, currencyType) {
+			exec(null, null, "TalkingData", "onCancelOrder", [orderId, amount, currencyType]);
 		},
 		onViewItem:function(itemId, category, name, unitPrice) {
-			cordova.exec(null, null, "TalkingData", "onViewItem", [itemId, category, name, unitPrice]);
+			exec(null, null, "TalkingData", "onViewItem", [itemId, category, name, unitPrice]);
 		},
 		onAddItemToShoppingCart:function(itemId, category, name, unitPrice, amount) {
-			cordova.exec(null, null, "TalkingData", "onAddItemToShoppingCart", [itemId, category, name, unitPrice, amount]);
+			exec(null, null, "TalkingData", "onAddItemToShoppingCart", [itemId, category, name, unitPrice, amount]);
 		},
 		onViewShoppingCart:function(shoppingCart) {
 			var shoppingCartJson = JSON.stringify(shoppingCart);
-			cordova.exec(null, null, "TalkingData", "onViewShoppingCart", [shoppingCartJson]);
+			exec(null, null, "TalkingData", "onViewShoppingCart", [shoppingCartJson]);
 		},
 	```
 	删除 `src/android/TalkingDataPlugin.java` 文件中如下代码：
 	
 	```
-	import com.tendcloud.tenddata.Order;
 	import com.tendcloud.tenddata.ShoppingCart;
 	```
 	```
@@ -63,6 +59,9 @@ App Analytics Cordova/PhoneGap 平台 SDK 由 `封装层` 和 `Native SDK` 两�
 				...
 				return true;
 			} else if (action.equals("onOrderPaySucc")) {
+				...
+				return true;
+			} else if (action.equals("onCancelOrder")) {
 				...
 				return true;
 			} else if (action.equals("onViewItem")) {
@@ -76,9 +75,6 @@ App Analytics Cordova/PhoneGap 平台 SDK 由 `封装层` 和 `Native SDK` 两�
 				return true;
 	```
 	```
-		private Order stringToOrder(String orderStr) {
-			...
-		}
 		private ShoppingCart stringToShoppingCart(String shoppingCartStr) {
 			...
 		}
@@ -88,6 +84,7 @@ App Analytics Cordova/PhoneGap 平台 SDK 由 `封装层` 和 `Native SDK` 两�
 	```
 	- (void)onPlaceOrder:(CDVInvokedUrlCommand*)command;
 	- (void)onOrderPaySucc:(CDVInvokedUrlCommand*)command;
+	- (void)onCancelOrder:(CDVInvokedUrlCommand*)command;
 	- (void)onViewItem:(CDVInvokedUrlCommand*)command;
 	- (void)onAddItemToShoppingCart:(CDVInvokedUrlCommand*)command;
 	- (void)onViewShoppingCart:(CDVInvokedUrlCommand*)command;
@@ -101,6 +98,9 @@ App Analytics Cordova/PhoneGap 平台 SDK 由 `封装层` 和 `Native SDK` 两�
 	- (void)onOrderPaySucc:(CDVInvokedUrlCommand*)command {
 		...
 	}
+	- (void)onCancelOrder:(CDVInvokedUrlCommand*)command {
+		...
+	}
 	- (void)onViewItem:(CDVInvokedUrlCommand*)command {
 		...
 	}
@@ -112,9 +112,6 @@ App Analytics Cordova/PhoneGap 平台 SDK 由 `封装层` 和 `Native SDK` 两�
 	}
 	```
 	```
-	- (TalkingDataOrder *)stringToOrder:(NSString *)orderStr {
-		...
-	}
 	- (TalkingDataShoppingCart *)stringToShoppingCart:(NSString *)shoppingCartStr {
 		...
 	}
@@ -124,18 +121,18 @@ App Analytics Cordova/PhoneGap 平台 SDK 由 `封装层` 和 `Native SDK` 两�
 	
 	```
 		onEvent:function(eventId) {
-			cordova.exec(null, null, "TalkingData", "onEvent", [eventId]);
+			exec(null, null, "TalkingData", "onEvent", [eventId]);
 		},
 		onEventWithLabel:function(eventId, eventLabel) {
-			cordova.exec(null, null, "TalkingData", "onEventWithLabel", [eventId, eventLabel]);
+			exec(null, null, "TalkingData", "onEventWithLabel", [eventId, eventLabel]);
 		},
 		onEventWithParameters:function(eventId, eventLabel, eventData) {
 			var eventDataJson = JSON.stringify(eventData);
-			cordova.exec(null, null, "TalkingData", "onEventWithParameters", [eventId, eventLabel, eventDataJson]);
+			exec(null, null, "TalkingData", "onEventWithParameters", [eventId, eventLabel, eventDataJson]);
 		},
 		onEventWithValue:function(eventId, eventLabel, eventData, eventValue) {
 			var eventDataJson = JSON.stringify(eventData);
-			cordova.exec(null, null, "TalkingData", "onEventWithValue", [eventId, eventLable, eventDataJson, eventValue]);
+			exec(null, null, "TalkingData", "onEventWithValue", [eventId, eventLable, eventDataJson, eventValue]);
 		},
 	```
 	删除 `src/android/TalkingDataPlugin.java` 文件中如下代码：
@@ -189,13 +186,13 @@ App Analytics Cordova/PhoneGap 平台 SDK 由 `封装层` 和 `Native SDK` 两�
 	
 	```
 		onPage:function(pageName) {
-			cordova.exec(null, null, "TalkingData", "onPage", [pageName]);
+			exec(null, null, "TalkingData", "onPage", [pageName]);
 		},
 		onPageBegin:function(pageName) {
-			cordova.exec(null, null, "TalkingData", "onPageBegin", [pageName]);
+			exec(null, null, "TalkingData", "onPageBegin", [pageName]);
 		},
 		onPageEnd:function(pageName) {
-			cordova.exec(null, null, "TalkingData", "onPageEnd", [pageName]);
+			exec(null, null, "TalkingData", "onPageEnd", [pageName]);
 		},
 	```
 	删除 `src/android/TalkingDataPlugin.java` 文件中如下代码：

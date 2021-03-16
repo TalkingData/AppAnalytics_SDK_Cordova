@@ -9,9 +9,6 @@
     <js-module src="www/TalkingData.js" name="TalkingData">
         <clobbers target="TalkingData" />
     </js-module>
-    <js-module src="www/TalkingDataOrder.js" name="TalkingDataOrder">
-        <clobbers target="TalkingDataOrder" />
-    </js-module>
     <js-module src="www/TalkingDataShoppingCart.js" name="TalkingDataShoppingCart">
         <clobbers target="TalkingDataShoppingCart" />
     </js-module>
